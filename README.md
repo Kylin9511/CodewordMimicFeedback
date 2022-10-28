@@ -44,7 +44,7 @@ home
 The key results reported in Table IV of the paper are presented as follows.
 
 Compression Ratio | Methods | Scenario | NMSE | Params | Checkpoints Path
-:--: | :-- | :--: | --: | --: | :--
+:--: | :-- | :--: | --: | :--: | :--
 1/4  | BCRNet    | indoor   | -17.39dB | 33K | in_cr4/bcrnet.pth
 1/4  | BCRNet-CM | indoor   | -19.25dB  | 33K | in_cr4/bcrnet-cm.pth
 1/4  | BCRNet    | outdoor  | -8.90dB | 33K | out_cr4/bcrnet.pth
