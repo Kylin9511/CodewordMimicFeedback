@@ -1,1 +1,1 @@
-from .bcsinet import *
+from .bcrnet import *
