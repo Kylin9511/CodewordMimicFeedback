@@ -54,23 +54,18 @@ def evaluator(sparse_pred, sparse_gt, raw_gt):
 
         # Calculate the Rho
         n = sparse_pred.size(0)
-        sparse_pred = sparse_pred.permute(0, 2, 3, 1)  # Move the real/imaginary dim to the last
-        zeros = sparse_pred.new_zeros((n, nt, nc_expand - nc, 2))
-        sparse_pred = torch.cat((sparse_pred, zeros), dim=2)
-        raw_pred = torch.fft(sparse_pred, signal_ndim=1)[:, :, :125, :]
+        sparse_pred = torch.complex(sparse_pred[:, 0, ...], sparse_pred[:, 1, ...])
+        complex_zeros = sparse_pred.new_zeros((n, nt, nc_expand - nc))
+        sparse_pred = torch.cat((sparse_pred, complex_zeros), dim=2)
+        raw_pred = torch.fft.fft(sparse_pred, dim=2)[:, :, :125]
+        raw_gt = torch.complex(raw_gt[..., 0], raw_gt[..., 1])
 
-        norm_pred = raw_pred[..., 0] ** 2 + raw_pred[..., 1] ** 2
-        norm_pred = torch.sqrt(norm_pred.sum(dim=1))
+        norm_pred = torch.sqrt(torch.sum(torch.conj(raw_pred) * raw_pred, dim=1))
+        norm_pred = torch.abs(norm_pred)
+        norm_gt = torch.sqrt(torch.sum(torch.conj(raw_gt) * raw_gt, dim=1))
+        norm_gt = torch.abs(norm_gt)
+        norm_cross = torch.abs(torch.sum(torch.conj(raw_gt) * raw_pred, dim=1))
 
-        norm_gt = raw_gt[..., 0] ** 2 + raw_gt[..., 1] ** 2
-        norm_gt = torch.sqrt(norm_gt.sum(dim=1))
-
-        real_cross = raw_pred[..., 0] * raw_gt[..., 0] + raw_pred[..., 1] * raw_gt[..., 1]
-        real_cross = real_cross.sum(dim=1)
-        imag_cross = raw_pred[..., 0] * raw_gt[..., 1] - raw_pred[..., 1] * raw_gt[..., 0]
-        imag_cross = imag_cross.sum(dim=1)
-        norm_cross = torch.sqrt(real_cross ** 2 + imag_cross ** 2)
-
-        rho = (norm_cross / (norm_pred * norm_gt)).mean()
-
+        rho = torch.mean(norm_cross / (norm_pred * norm_gt), dim=1)
+        rho = rho.mean()
         return rho, nmse

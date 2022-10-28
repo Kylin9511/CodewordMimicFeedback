@@ -74,7 +74,7 @@ class BCRNet(nn.Module):
             ("conv1x1_bn", ConvBN(4, 2, 1)),
             ("relu2", nn.LeakyReLU(negative_slope=0.3, inplace=True)),
         ]))
-        self.encoder_fc = nn.Linear(total_size, total_size // reduction)
+        self.encoder_binary_fc = nn.Linear(total_size, total_size // reduction)
 
         self.decoder_fc = nn.Linear(total_size // reduction, total_size)
         decoder = OrderedDict([
@@ -115,7 +115,7 @@ class BCRNet(nn.Module):
         encode2 = self.encoder2(x)
         out = torch.cat((encode1, encode2), dim=1)
         out = self.encoder_conv(out)
-        out = self.encoder_fc(out.view(n, -1))
+        out = self.encoder_binary_fc(out.view(n, -1))
 
         out = self.decoder_fc(out).view(n, c, h, w)
         out = self.decoder_feature(out)
