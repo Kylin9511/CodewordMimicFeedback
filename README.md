@@ -1,5 +1,5 @@
 ## Overview
-This is a PyTorch implementation of BCRNet inference. The BCRNet network performance is improved with codeword mimic (CM) learning. The key results (BCRNet benchmark and BCRNet-CM) in paper [Better Lightweight Network for Free: Codeword Mimic Learning for Massive MIMO CSI feedback](wip) can be reproduced.
+This is a PyTorch implementation of BCRNet inference. The BCRNet network performance is improved with codeword mimic (CM) learning. The key results (BCRNet benchmark and BCRNet-CM) in paper [Better Lightweight Network for Free: Codeword Mimic Learning for Massive MIMO CSI feedback](https://arxiv.org/abs/2210.16544) can be reproduced.
 
 ## Requirements
 
