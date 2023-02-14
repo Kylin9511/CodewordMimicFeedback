@@ -14,7 +14,7 @@ The following requirements need to be installed.
 The channel state information (CSI) matrix is generated from [COST2100](https://ieeexplore.ieee.org/document/6393523) model and setting can be found in our paper. On the other hand, Chao-Kai Wen provides a pre-processed COST2100 dataset, which we adopt in BCsiNet training and inference. You can download it from [Google Drive](https://drive.google.com/drive/folders/1_lAMLk_5k1Z8zJQlTr5NRnSD6ACaNRtj?usp=sharing) or [Baidu Netdisk](https://pan.baidu.com/s/1Ggr6gnsXNwzD4ULbwqCmjA).
 
 #### B. Checkpoints Downloading
-The checkpoints of our proposed BCRNet can be downloaded from [Baidu Netdisk](https://pan.baidu.com/s/1Kb1fU-TObWZqfmk2EBCBBw) (passwd: spkc) or [Google Drive](https://drive.google.com/drive/folders/1euHV5rYDS-Bkxi6rTsTRZm0Yf3NYzlz8?usp=sharing)
+The checkpoints of our proposed BCRNet can be downloaded from [Baidu Netdisk](https://pan.baidu.com/s/11xbn6BJQIhD3tb801Y62CQ) (passwd: 5ipq) or [Google Drive](https://drive.google.com/drive/folders/1TgWm0JptaS9QEl3Mwvx6xHZwoM91KaD4?usp=sharing)
 
 #### C. Project Tree Arrangement
 
@@ -65,14 +65,14 @@ Compression Ratio | Methods | Scenario | NMSE | Params | Checkpoints Path
 The key results reported in Table II of the paper are presented as follows. Note that the performance of the original CsiNet can be found in their papers [CsiNet](https://ieeexplore.ieee.org/document/8322184) and [CsiNet+](https://ieeexplore.ieee.org/document/8972904/).
 Compression Ratio | Methods | Scenario | NMSE | Params | Checkpoints Path
 :--: | :-- | :--: | --: | :--: | :--
-1/4  | CsiNet-CM | indoor   | -25.60dB  | 33K | in_cr4/csinet-cm.pth
-1/4  | CsiNet-CM | outdoor  | -10.09dB  | 33K | out_cr4/csinet-cm.pth
-1/8  | CsiNet-CM | indoor   | -15.33dB  | 17K | in_cr8/csinet-cm.pth
-1/8  | CsiNet-CM | outdoor  | -7.63dB  | 17K | out_cr8/csinet-cm.pth
-1/16 | CsiNet-CM | indoor   | -10.12dB  | 8K | in_cr16/csinet-cm.pth
-1/16 | CsiNet-CM | outdoor  | -5.02dB  | 8K | out_cr16/csinet-cm.pth
-1/32 | CsiNet-CM | indoor   | -8.75dB  | 4K | in_cr32/csinet-cm.pth
-1/32 | CsiNet-CM | outdoor  | -3.38dB  | 4K | out_cr32/csinet-cm.pth
+1/4  | CsiNet-CM | indoor   | -25.60dB  | 1.049M | in_cr4/csinet-cm.pth
+1/4  | CsiNet-CM | outdoor  | -10.09dB  | 1.049M | out_cr4/csinet-cm.pth
+1/8  | CsiNet-CM | indoor   | -15.33dB  | 0.525M | in_cr8/csinet-cm.pth
+1/8  | CsiNet-CM | outdoor  | -7.63dB  | 0.525M | out_cr8/csinet-cm.pth
+1/16 | CsiNet-CM | indoor   | -10.12dB  | 0.262M | in_cr16/csinet-cm.pth
+1/16 | CsiNet-CM | outdoor  | -5.02dB  | 0.262M | out_cr16/csinet-cm.pth
+1/32 | CsiNet-CM | indoor   | -8.75dB  | 0.131M | in_cr32/csinet-cm.pth
+1/32 | CsiNet-CM | outdoor  | -3.38dB  | 0.131M | out_cr32/csinet-cm.pth
 
 In order to reproduce the aforementioned key results, you need to download the given dataset and checkpoints. Moreover, you should arrange your project tree as instructed. An example of `Experiments/run.sh` can be found as follows.
 
