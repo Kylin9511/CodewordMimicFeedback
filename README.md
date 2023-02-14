@@ -41,7 +41,7 @@ home
 
 ## Key Results Reproduction
 
-The key results reported in Table IV of the paper are presented as follows.
+The key results reported in Table I of the paper are presented as follows.
 
 Compression Ratio | Methods | Scenario | NMSE | Params | Checkpoints Path
 :--: | :-- | :--: | --: | :--: | :--
@@ -62,12 +62,25 @@ Compression Ratio | Methods | Scenario | NMSE | Params | Checkpoints Path
 1/32 | BCRNet    | outdoor  | -2.91dB | 4K | out_cr32/bcrnet.pth
 1/32 | BCRNet-CM | outdoor  | -2.98dB  | 4K | out_cr32/bcrnet-cm.pth
 
+The key results reported in Table II of the paper are presented as follows. Note that the performance of the original CsiNet can be found in their papers [CsiNet](https://ieeexplore.ieee.org/document/8322184) and [CsiNet+](https://ieeexplore.ieee.org/document/8972904/).
+Compression Ratio | Methods | Scenario | NMSE | Params | Checkpoints Path
+:--: | :-- | :--: | --: | :--: | :--
+1/4  | CsiNet-CM | indoor   | -25.60dB  | 33K | in_cr4/csinet-cm.pth
+1/4  | CsiNet-CM | outdoor  | -10.09dB  | 33K | out_cr4/csinet-cm.pth
+1/8  | CsiNet-CM | indoor   | -15.33dB  | 17K | in_cr8/csinet-cm.pth
+1/8  | CsiNet-CM | outdoor  | -7.63dB  | 17K | out_cr8/csinet-cm.pth
+1/16 | CsiNet-CM | indoor   | -10.12dB  | 8K | in_cr16/csinet-cm.pth
+1/16 | CsiNet-CM | outdoor  | -5.02dB  | 8K | out_cr16/csinet-cm.pth
+1/32 | CsiNet-CM | indoor   | -8.75dB  | 4K | in_cr32/csinet-cm.pth
+1/32 | CsiNet-CM | outdoor  | -3.38dB  | 4K | out_cr32/csinet-cm.pth
+
 In order to reproduce the aforementioned key results, you need to download the given dataset and checkpoints. Moreover, you should arrange your project tree as instructed. An example of `Experiments/run.sh` can be found as follows.
 
 ``` bash
 python /home/CodewordMimicFeedback/main.py \
   --data-dir '/home/COST2100' \
   --scenario 'in' \
+  --model 'bcrnet' \
   --pretrained './checkpoints/in_cr4/bcrnet.pth' \
   --batch-size 200 \
   --workers 0 \

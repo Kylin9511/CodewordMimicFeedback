@@ -9,6 +9,8 @@ parser.add_argument('--data-dir', type=str, required=True,
                     help='the path of dataset.')
 parser.add_argument('--scenario', type=str, required=True, choices=["in", "out"],
                     help="the channel scenario")
+parser.add_argument('--model', type=str, required=True, choices=["bcrnet", "csinet"],
+                    help="the model name for inference")
 parser.add_argument('-b', '--batch-size', type=int, required=True, metavar='N',
                     help='mini-batch size')
 parser.add_argument('-j', '--workers', type=int, metavar='N', required=True,
