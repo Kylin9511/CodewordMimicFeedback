@@ -23,7 +23,8 @@ def main():
 
     # Define model
     model = init_model(args)
-    model._fc_binarization()
+    if hasattr(model, '_fc_binarization'):
+        model._fc_binarization()
     model.to(device)
 
     # Define loss function

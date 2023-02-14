@@ -2,7 +2,7 @@ import os
 import random
 import torch
 
-from model import bcrnet
+from model import bcrnet, csinet
 from utils import logger, line_seg
 
 __all__ = ["init_device", "init_model"]
@@ -39,9 +39,14 @@ def init_device(seed=None, cpu=None, gpu=None, affinity=None):
     return device, pin_memory
 
 
-def init_model(args):
+def init_model(args, verbose=True):
     # Model loading
-    model = bcrnet(reduction=args.reduction)
+    if args.model == 'bcrnet':
+        model = bcrnet(reduction=args.reduction)
+    elif args.model == 'csinet':
+        model = csinet(reduction=args.reduction)
+    else:
+        raise ValueError(f"Illegal model name {args.model}")
 
     if args.pretrained is not None:
         assert os.path.isfile(args.pretrained)
@@ -51,8 +56,9 @@ def init_model(args):
         logger.info("pretrained model loaded from {}".format(args.pretrained))
 
     # Model info logging
-    logger.info(f'=> Model Name: BCsiNet')
+    logger.info(f'=> Model Name: {args.model}')
     logger.info(f'=> Model Config: compression ratio=1/{args.reduction}')
-    logger.info(f'\n{line_seg}\n{model}\n{line_seg}\n')
+    if verbose is True:
+        logger.info(f'\n{line_seg}\n{model}\n{line_seg}\n')
 
     return model
